@@ -48,6 +48,7 @@
 .container .main-content {
     grid-area: 1 / 2;
     background-color: #100E1D;
+    z-index: 100;
 }
 
 .sidebar-search {

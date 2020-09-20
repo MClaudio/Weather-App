@@ -35,16 +35,39 @@
  }
  
  .icon-weather {
-     /* background-image: url("/assets/img/Cloud-background.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: .5; */
      width: 100%;
      display: flex;
      flex-direction: column;
      align-items: center;
      height: 300px;
      justify-content: space-around;
+     position: relative;
+ }
+ 
+ .icon-weather::after {
+     /*url("/assets/img/Cloud-background.png")*/
+     content: "";
+     background: url("/assets/img/Cloud-background.png");
+     background-repeat: no-repeat;
+     background-size: contain;
+     width: 100%;
+     opacity: 0.1;
+     top: 0;
+     left: -300px;
+     bottom: 0;
+     right: 0;
+     position: absolute;
+     z-index: -1;
+     animation: move-in-steps 25s alternate linear infinite;
+ }
+ 
+ @keyframes move-in-steps {
+     0% {
+         left: -300px;
+     }
+     100% {
+         left: 300px;
+     }
  }
  
  .icon-weather img {
