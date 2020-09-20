@@ -1,0 +1,38 @@
+<div class="search-content">
+    <div class="clouse">
+        <i (click)="searchService.open = !searchService.open" class="material-icons">close</i>
+    </div>
+    <div class="input-search">
+        <form #form="ngForm" (ngSubmit)="searchForm(form)">
+            <div class="input">
+                <i class="material-icons">search</i>
+                <input ngModel type="search" name="search" placeholder="Search location" required>
+            </div>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="result-search">
+
+        <div class="loader" *ngIf="loader">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="locations">
+            <div class="result" *ngFor="let location of locations" (click)="searchId(location.id)">
+                <p>{{location.name}}, {{location.sys.country}}</p>
+                <i class="material-icons">keyboard_arrow_right</i>
+            </div>
+        </ng-container>
+
+
+        <div *ngIf="locations && locations.length == 0">
+            <p>No se encontraron resultados</p>
+        </div>
+
+
+    </div>
+
+</div>

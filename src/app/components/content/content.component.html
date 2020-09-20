@@ -1,0 +1,80 @@
+<div class="content">
+    <div class="options">
+
+        <button [ngClass]="{'selected': searchService.deg === 'C' }" (click)="changeC()">&#176;C</button>
+        <button [ngClass]="{'selected': searchService.deg === 'F' }" (click)="changeF()">&#176;F</button>
+    </div>
+    <div class="card-content">
+
+        <div class="loader" *ngIf="searchService.loader else loading">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <ng-template #loading>
+            <div class="card-weather" *ngFor="let item of searchService.days">
+                <p>{{item.day.dt_txt | date:"EEEE"}}</p>
+                <img src="http://openweathermap.org/img/wn/{{item.day.weather[0].icon}}@2x.png" alt=" ">
+                <div class="temp ">
+                    <p>{{item.temp.max_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
+                    <p>{{item.temp.min_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
+                </div>
+            </div>
+        </ng-template>
+
+    </div>
+
+    <div class="info">
+        <h2>Today's Highlights</h2>
+
+
+
+        <div class="info-content">
+
+            <div class="loader" *ngIf="searchService.loader else info">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <ng-template #info>
+                <div class="info-card ">
+                    <p>Wind status</p>
+                    <p><span>{{searchService.todayWeather.wind.speed}}</span> mph</p>
+                    <p class="navigation"><i [ngStyle]="{ 'transform': 'rotate('+searchService.todayWeather.wind.deg+'deg)'} " class="material-icons">navigation</i>{{searchService.todayWeather.wind.deg | deg}}</p>
+                </div>
+
+                <div class="info-card ">
+                    <p>Humidity</p>
+                    <p><span>{{searchService.todayWeather.main.humidity}}</span> %</p>
+                    <div class="percent ">
+                        <p>0%</p>
+                        <p>50%</p>
+                        <p>100%</p>
+                    </div>
+                    <div class="bar ">
+                        <div class="bar-background " [ngStyle]="{ 'width': searchService.todayWeather.main.humidity+ '%'} ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card ">
+                    <p>Visibility</p>
+                    <p><span>{{searchService.todayWeather.visibility}}</span> miles</p>
+                </div>
+
+                <div class="info-card ">
+                    <p>Air Pressure</p>
+                    <p><span>{{searchService.todayWeather.main.pressure}}</span> mb</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <footer>
+        <p>Claudio Mldo</p>
+    </footer>
+</div>

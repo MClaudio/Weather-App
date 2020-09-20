@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SearchService } from './services/search.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'WeatherApp';
+
+  constructor(public searchService:SearchService){
+
+  }
 }

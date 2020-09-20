@@ -1,0 +1,27 @@
+<div class="sidebar">
+    <div class="buttons">
+        <button (click)="searchService.open = !searchService.open">Search for places</button>
+        <i (click)="getCurrentLocation()" class="material-icons">gps_fixed</i>
+    </div>
+
+
+    <div class="loader" *ngIf="searchService.loader else loading">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <ng-template #loading>
+
+        <div class="icon-weather">
+            <img src="http://openweathermap.org/img/wn/{{searchService.todayWeather.weather[0].icon}}@2x.png" alt="">
+            <p><span>{{searchService.todayWeather.main.temp | convert:searchService.deg}}</span>&#176;{{searchService.deg}}</p>
+        </div>
+        <h3>{{searchService.todayWeather.weather[0].main}}</h3>
+        <div class="location">
+            <p>Today &middot; {{searchService.todayWeather.dt | date: "longDate"}}</p>
+            <p><i class="material-icons">place</i> {{searchService.todayWeather.locate.name}}, {{searchService.todayWeather.locate.country}}</p>
+        </div>
+    </ng-template>
+</div>
