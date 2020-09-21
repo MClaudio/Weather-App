@@ -57,6 +57,7 @@
     position: absolute;
     left: -400px;
     transition: inherit 1s all;
+    z-index: 200;
 }
 
 .open {

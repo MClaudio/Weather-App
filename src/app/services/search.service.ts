@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators'
 })
 export class SearchService {
 
-  URI="http://api.openweathermap.org/data/2.5/"
+  URI="https://api.openweathermap.org/data/2.5/"
   API_KEY="8c79e51047d728ff0de1fb221d8d5127"
 
   open:boolean = false
