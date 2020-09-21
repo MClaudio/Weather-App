@@ -1,6 +1,7 @@
 <div class="container">
+
     <div class="sidebar-content">
-        <app-search class="sidebar-menu sidebar-search" [ngClass]=" { 'open': searchService.open} "></app-search>
+        <app-search class="sidebar-menu sidebar-search" [ngClass]=" { 'open': searchService.open === true, 'close': searchService.open === false} "></app-search>
         <app-sidebar class="sidebar-menu"></app-sidebar>
     </div>
 

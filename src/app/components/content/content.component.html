@@ -16,7 +16,7 @@
         <div class="card-content">
             <div class="card-weather" *ngFor="let item of searchService.days">
                 <p>{{item.day.dt_txt | date:"EEEE"}}</p>
-                <img [src]=" item.day.weather[0].icon | urlsanitizer:'http://openweathermap.org/img/wn/'" alt=" ">
+                <img [src]=" item.day.weather[0].icon | urlsanitizer:'https://openweathermap.org/img/wn/'" alt=" ">
                 <div class="temp ">
                     <p>{{item.temp.max_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
                     <p>{{item.temp.min_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>

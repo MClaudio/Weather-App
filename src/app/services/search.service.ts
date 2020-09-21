@@ -100,7 +100,6 @@ export class SearchService {
 
 
   model(data:any){
-    console.log(data);
     this.todayWeather = {
       "deg": this.deg,
       "dt": new Date(data.dt* 1000).toLocaleDateString("en-US"),
