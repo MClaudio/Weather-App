@@ -10,6 +10,7 @@ import { SearchService } from './services/search.service';
 import { FormsModule } from '@angular/forms';
 import { ConvertPipe } from './pipes/convert.pipe';
 import { DegPipe } from './pipes/deg.pipe';
+import { UrlsanitizerPipe } from './pipes/urlsanitizer.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { DegPipe } from './pipes/deg.pipe';
     ContentComponent,
     SearchComponent,
     ConvertPipe,
-    DegPipe
+    DegPipe,
+    UrlsanitizerPipe
   ],
   imports: [
     BrowserModule,

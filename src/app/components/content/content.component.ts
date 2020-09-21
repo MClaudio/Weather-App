@@ -21,10 +21,12 @@ export class ContentComponent implements OnInit {
 
   changeC(){
     this.searchService.deg = "C"
+    this.searchService.speed = "m/s"
   }
 
   changeF(){
     this.searchService.deg = "F"
+    this.searchService.speed = "mph"
   }
 
   

@@ -14,7 +14,7 @@
 
     <ng-template #loading>
         <div class="icon-weather">
-            <img src="http://openweathermap.org/img/wn/{{searchService.todayWeather.weather[0].icon}}@2x.png" alt="">
+            <img [src]=" searchService.todayWeather.weather[0].icon | urlsanitizer:'http://openweathermap.org/img/wn/'" alt="">
             <p><span>{{searchService.todayWeather.main.temp | convert:searchService.deg}}</span>&#176;{{searchService.deg}}</p>
         </div>
         <h3>{{searchService.todayWeather.weather[0].main}}</h3>

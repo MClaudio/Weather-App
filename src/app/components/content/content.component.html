@@ -4,46 +4,42 @@
         <button [ngClass]="{'selected': searchService.deg === 'C' }" (click)="changeC()">&#176;C</button>
         <button [ngClass]="{'selected': searchService.deg === 'F' }" (click)="changeF()">&#176;F</button>
     </div>
-    <div class="card-content">
 
-        <div class="loader" *ngIf="searchService.loader else loading">
+    <div class="loader" *ngIf="searchService.loader else loading">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <ng-template #loading>
+        <div class="card-content">
+            <div class="card-weather" *ngFor="let item of searchService.days">
+                <p>{{item.day.dt_txt | date:"EEEE"}}</p>
+                <img [src]=" item.day.weather[0].icon | urlsanitizer:'http://openweathermap.org/img/wn/'" alt=" ">
+                <div class="temp ">
+                    <p>{{item.temp.max_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
+                    <p>{{item.temp.min_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+    <div class="info">
+        <h2>Today's Highlights</h2>
+
+        <div class="loader" *ngIf="searchService.loader else info">
             <div class="lds-ripple">
                 <div></div>
                 <div></div>
             </div>
         </div>
 
-        <ng-template #loading>
-            <div class="card-weather" *ngFor="let item of searchService.days">
-                <p>{{item.day.dt_txt | date:"EEEE"}}</p>
-                <img src="http://openweathermap.org/img/wn/{{item.day.weather[0].icon}}@2x.png" alt=" ">
-                <div class="temp ">
-                    <p>{{item.temp.max_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
-                    <p>{{item.temp.min_temp | convert:searchService.deg}}&#176;{{searchService.deg}}</p>
-                </div>
-            </div>
-        </ng-template>
-
-    </div>
-
-    <div class="info">
-        <h2>Today's Highlights</h2>
-
-
-
-        <div class="info-content">
-
-            <div class="loader" *ngIf="searchService.loader else info">
-                <div class="lds-ripple">
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-
-            <ng-template #info>
+        <ng-template #info>
+            <div class="info-content">
                 <div class="info-card ">
                     <p>Wind status</p>
-                    <p><span>{{searchService.todayWeather.wind.speed}}</span> mph</p>
+                    <p><span>{{searchService.todayWeather.wind.speed | convert:searchService.speed }}</span> {{searchService.speed}}</p>
                     <p class="navigation"><i [ngStyle]="{ 'transform': 'rotate('+searchService.todayWeather.wind.deg+'deg)'} " class="material-icons">navigation</i>{{searchService.todayWeather.wind.deg | deg}}</p>
                 </div>
 
@@ -68,10 +64,11 @@
 
                 <div class="info-card ">
                     <p>Air Pressure</p>
-                    <p><span>{{searchService.todayWeather.main.pressure}}</span> mb</p>
+                    <p><span>{{searchService.todayWeather.main.pressure}}</span> hPa</p>
                 </div>
-            </ng-template>
-        </div>
+
+            </div>
+        </ng-template>
     </div>
 
     <footer>

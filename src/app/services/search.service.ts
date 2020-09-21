@@ -13,6 +13,7 @@ export class SearchService {
   open:boolean = false
   todayWeather:any={};
   deg = "C";
+  speed = "m/s"
   days:any=[];
   loader:boolean= false;
 
@@ -99,6 +100,7 @@ export class SearchService {
 
 
   model(data:any){
+    console.log(data);
     this.todayWeather = {
       "deg": this.deg,
       "dt": new Date(data.dt* 1000).toLocaleDateString("en-US"),
