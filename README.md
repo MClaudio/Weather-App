@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Live Preview
 
-https://weather-app-8sgikw0kl.vercel.app/
+https://weather-app.claudiomldo.vercel.app/
 
 ## Services
 
