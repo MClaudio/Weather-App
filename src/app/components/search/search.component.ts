@@ -24,16 +24,20 @@ export class SearchComponent implements OnInit {
     this.loader= true;
     this.searchService.searchLocations(form.value.search).subscribe((data:any)=>{
       this.locations = data.list;
-      //console.log(this.locations);
       this.loader= false;
-    })
+    }, err=>{
+      this.locations = [];
+      this.loader= false;
+    }
     
+    )
   }
 
   searchId(id:number){
     //console.log(id)
-    this.searchService.getLocationId(id);
     this.searchService.open = !this.searchService.open;
+    this.searchService.getLocationId(id);
+    
   }
 
 }

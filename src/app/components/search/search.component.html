@@ -13,25 +13,25 @@
     </div>
     <div class="result-search">
 
-        <div class="loader" *ngIf="loader">
+        <div class="loader" *ngIf="loader else loading">
             <div class="lds-ripple">
                 <div></div>
                 <div></div>
             </div>
         </div>
 
-        <ng-container *ngIf="locations">
-            <div class="result" *ngFor="let location of locations" (click)="searchId(location.id)">
-                <p>{{location.name}}, {{location.sys.country}}</p>
-                <i class="material-icons">keyboard_arrow_right</i>
+        <ng-template #loading>
+            <ng-container *ngIf="locations">
+                <div class="result" *ngFor="let location of locations" (click)="searchId(location.id)">
+                    <p>{{location.name}}, {{location.sys.country}}</p>
+                    <i class="material-icons">keyboard_arrow_right</i>
+                </div>
+            </ng-container>
+
+            <div *ngIf="locations && locations.length == 0">
+                <p>No results found.</p>
             </div>
-        </ng-container>
-
-
-        <div *ngIf="locations && locations.length == 0">
-            <p>No se encontraron resultados</p>
-        </div>
-
+        </ng-template>
 
     </div>
 
